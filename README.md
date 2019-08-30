@@ -1,5 +1,7 @@
 ##Summer Cohort Post Graduation Homework!!!
-Do the following kata to help us out with a new style of releasing assignments to our students.  It's also a fun kata to work on and in Columbus it's a very common long form interview kata.  For the purposes of our alpha test of this program, we have a due date of Sunday @ 4:00PM, but I encourage you to keep working on it as you see fit after that.
+Do the following kata to help us out with a new style of releasing assignments to our students.  It's also a fun kata to work on and in Columbus it's a very common long form interview kata.  For the purposes of our alpha test of this program, we have a due date of Friday Sept 6th @ 4:00PM, but I encourage you to keep working on it as you see fit after that.
+
+Make sure you make a commit and push it before the due date.
 
 There is a buid.gradle file included for Java folks, if you want to try it in JavaScript you need to build your own Node project.  
 
