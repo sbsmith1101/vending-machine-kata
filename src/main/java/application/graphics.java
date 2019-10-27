@@ -1,8 +1,12 @@
 package application;
 
+
+
 public class graphics {
 
+
 	public static void sodaGraphic() {
+		
 		System.out.println(				
 ".~~~~.\r\n" + 
 "i====i\r\n" + 

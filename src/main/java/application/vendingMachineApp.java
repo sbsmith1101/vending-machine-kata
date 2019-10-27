@@ -13,7 +13,7 @@ public class vendingMachineApp {
 	   
 	    Scanner input = new Scanner(System.in);
 	    System.out.println("Please select the item you want to purchase \n");
-	    
+	    session.startDrawer();
 	    do {
 	        mainScreen();
 	        System.out.println("Current Balance " + session.getBalance());
@@ -59,7 +59,11 @@ public class vendingMachineApp {
 	        	
 	        	//soda
 	        case "2":
-	        	if(session.getBalance() >= 1.0) {
+	        	if(session.exactChangedNeeded() && session.getBalance() != 100 ) {
+	        		System.out.println("exact change required");
+	        		break;
+	        	}
+	        	else if(session.getBalance() >= 100) {
 	        		graphics.sodaGraphic();
 	        		session.soda();
 	        		break;
@@ -70,7 +74,11 @@ public class vendingMachineApp {
 	        	}
 	        	//chips
 	        case "3":
-	        	if(session.getBalance() >= 0.5) {
+	        	if(session.exactChangedNeeded() && session.getBalance() != 50 ) {
+	        		System.out.println("exact change required");
+	        		break;
+	        	}
+	        	if(session.getBalance() >= 50) {
 	        		graphics.chipsGraphic();
 	        		session.chips();
 	        		break;
@@ -81,7 +89,11 @@ public class vendingMachineApp {
 	        	}
 	        	//candy
 	        case "4":
-	        	if(session.getBalance() >= 0.65) {
+	        	if(session.exactChangedNeeded() && session.getBalance() != 65 ) {
+	        		System.out.println("exact change required");
+	        		break;
+	        	}
+	        	if(session.getBalance() >= 65) {
 	        		graphics.candyGraphic();
 	        		session.candy();
 	        		break;
@@ -96,53 +108,55 @@ public class vendingMachineApp {
         		break;
 
 	        case "6":
-	        	if(session.getBalance() == 0.65) {
-	        		graphics.candyGraphic();
-	        		session.candy();
-	        		break;
+	     
+	        	System.out.println("1 to empty drawer contents");
+	        	System.out.println("2 to show drawer contents");
+	        	System.out.println("Press any other key to return to main menu");
+	        	userChoice = input.nextLine();
+	        	switch(userChoice) {
+	        	case "1":
+	        	session.emptyDrawer();
+	        	break;
+	        	case "2":
 	        	}
-	        	else {
-	        		System.out.println("Please insert exact change");
-	        		break;
-	        	}
-	        
-	        	
+	        	session.showDrawer();
+	        	break;
 	   
 	        	
 	        }
 	        
 	    }
 	        while(!userChoice.contentEquals("7"));
-	    if(session.getBalance() > 0.0) {
+	    if(session.getBalance() > 0) {
     		do {
-    			if(session.getBalance() >= 5.0) {
+    			if(session.getBalance() >= 500 && session.bills[1] >= 1) {
     				graphics.returnFive();
     				session.fiveBillReturn();
     				
     			}
-    			if(session.getBalance() < 5.0 && session.getBalance() >= 1.0 ) {
+    			if(session.getBalance() < 500 && session.getBalance() >= 100 && session.bills[0] >=1 ) {
     				graphics.returnOne();
     				session.singleBillReturn();
     				
     			}
-    			if(session.getBalance() < 1.0 && session.getBalance() >= 0.25 ) {
+    			if(session.getBalance() < 100 && session.getBalance() >= 25 && session.coins[2] >=1 ) {
     				graphics.returnCoin();
     				session.quarterReturn();
     				
     			}
-    			if(session.getBalance() < .25 && session.getBalance() >= 0.1 ) {
+    			if(session.getBalance() < 25 && session.getBalance() >= 10 && session.coins[1] >=1 ) {
     				graphics.returnCoin();
     				session.dimeReturn();
     				
     			}
-    			if(session.getBalance() < .1 && session.getBalance() >= 0.05 ) {
+    			if(session.getBalance() < 10 && session.getBalance() >= 5 && session.coins[0] >=1 ) {
     				graphics.returnCoin();
     				session.nickelReturn();	
     			}
     			
-    		
+    		System.out.println(session.getBalance());
     		}
-    		while(!(session.getBalance() == 0.0));
+    		while(session.getBalance() != 0);
     	 System.out.println("Have A Nice Day!");
     		
   
@@ -158,7 +172,7 @@ public class vendingMachineApp {
 	        System.out.println("- Enter 3 to purchase chips $0.50");
 	        System.out.println("- Enter 4 to purchase candy $0.65");
 	        System.out.println("- Enter 5 to purchase gum ((( SOLD OUT)))");
-	        System.out.println("- Enter 6 to purchase candy with exact change $0.65");
+	        System.out.println("- Enter 6 Maintence options");
 	        System.out.println("- Enter 7 to cancel purchase and return change");
 	        
 	     
